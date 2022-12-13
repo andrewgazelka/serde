@@ -447,14 +447,14 @@ fn serialize_variant(
             Style::Struct => quote!({ .. }),
         };
         quote! {
-            #this_value::#variant_ident #fields_pat => #skipped_err,
+            Self::#variant_ident #fields_pat => #skipped_err,
         }
     } else {
         // variant wasn't skipped
         let case = match variant.style {
             Style::Unit => {
                 quote! {
-                    #this_value::#variant_ident
+                    Self::#variant_ident
                 }
             }
             Style::Newtype => {
